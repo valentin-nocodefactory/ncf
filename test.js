@@ -1,4 +1,5 @@
 <script>
+console.log("loaded");
 var navElements;
 var navElementsBurger;
 var sections;
