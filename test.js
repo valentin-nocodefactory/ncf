@@ -1,5 +1,5 @@
 <script>
-  var navElements;
+var navElements;
 var navElementsBurger;
 var sections;
 
