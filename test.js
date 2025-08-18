@@ -1,4 +1,4 @@
-<script>
+
 console.log("loaded");
 var navElements;
 var navElementsBurger;
@@ -354,4 +354,3 @@ function animateCurrentSlide() {
     } else {}
   });
 }
-</script>
