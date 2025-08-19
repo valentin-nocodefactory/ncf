@@ -234,7 +234,7 @@ function initCibleAnim() {
       span.innerText = text[i];
       textElement.appendChild(span);
     }
-  };
+  });
 
   // Pour chaque texte/carte
   const cardStartup = document.querySelector(".card-startup");
