@@ -1,8 +1,14 @@
-
 console.log("loaded");
 var navElements;
 var navElementsBurger;
 var sections;
+
+function initScript() {
+    initDarkNavSwitch();
+    initGsap();
+  initAnimBubbles();
+initAnimCibles()
+}
 
 function initDarkNavSwitch() {
   // script pour navbar Negative on dark section
@@ -75,15 +81,9 @@ window.addEventListener("scroll", () => {
   window.requestAnimationFrame(checkNavbarSection);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  initDarkNavSwitch();
-});
 
-/* GSAP - apparition d'éléments de bas en haut */
-/*                         */
-/*                         */
-/*                         */
-document.addEventListener("DOMContentLoaded", function () {
+
+function initGsap() {
   // S'assurer que GSAP est chargé
   if (typeof gsap === "undefined") {
     console.error(
@@ -138,13 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-});
+};
 
-/* Footer - random shapes */
-/*                         */
-/*                         */
-/*                         */
-document.addEventListener("DOMContentLoaded", function () {
+
+function initAnimBubbles() {
   // Vérification si l'appareil est mobile
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -214,13 +211,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // Démarrer l'animation
     animate();
   });
-});
+};
 
 /* cards home */
 /*                         */
 /*                         */
 /*                         */
-document.addEventListener("DOMContentLoaded", function () {
+function initAnimCibles() {
   // Vérifier si nous devons initialiser l'animation lettre par lettre
   const allTexts = document.querySelectorAll(
     ".startup-txt, .pme-txt, .scaleup-txt, .grandgroupe-txt",
@@ -293,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
       resetAllTexts();
     });
   }
-});
+};
 
 /* cursor logos home */
 /*                         */
