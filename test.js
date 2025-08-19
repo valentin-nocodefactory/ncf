@@ -1,3 +1,4 @@
+
 console.log("loaded");
 var navElements;
 var navElementsBurger;
@@ -74,11 +75,15 @@ window.addEventListener("scroll", () => {
   window.requestAnimationFrame(checkNavbarSection);
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  initDarkNavSwitch();
+});
+
 /* GSAP - apparition d'éléments de bas en haut */
 /*                         */
 /*                         */
 /*                         */
-function initGsap () {
+document.addEventListener("DOMContentLoaded", function () {
   // S'assurer que GSAP est chargé
   if (typeof gsap === "undefined") {
     console.error(
@@ -133,7 +138,7 @@ function initGsap () {
       });
     });
   });
-};
+});
 
 /* Footer - random shapes */
 /*                         */
@@ -211,7 +216,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function initCibleAnim() {
+/* cards home */
+/*                         */
+/*                         */
+/*                         */
+document.addEventListener("DOMContentLoaded", function () {
   // Vérifier si nous devons initialiser l'animation lettre par lettre
   const allTexts = document.querySelectorAll(
     ".startup-txt, .pme-txt, .scaleup-txt, .grandgroupe-txt",
