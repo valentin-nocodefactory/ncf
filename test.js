@@ -99,7 +99,7 @@ function initGsap () {
     opacity: 0,
     y: 24,
     pointerEvents: "none",
-  };
+  });
 
   // Gérer le survol des éléments start-nav-menu
   const startElements = document.querySelectorAll("[start-nav-menu]");
