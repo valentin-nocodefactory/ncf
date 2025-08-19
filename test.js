@@ -3,12 +3,6 @@ var navElements;
 var navElementsBurger;
 var sections;
 
-function initScript() {
-   initDarkNavSwitch();
-   initGsap();
-   initCibleAnim();
-}
-
 function initDarkNavSwitch() {
   // script pour navbar Negative on dark section
   sections = document.querySelectorAll("[bg-theme]"); // adjust if needed
