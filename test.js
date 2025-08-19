@@ -139,7 +139,7 @@ function initGsap () {
       });
     });
   });
-});
+};
 
 /* Footer - random shapes */
 /*                         */
