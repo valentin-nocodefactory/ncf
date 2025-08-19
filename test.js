@@ -146,13 +146,10 @@ function initAnimBubbles() {
   const isMobile =
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent,
-    ) ||
-    window.innerWidth < 768;
+    ) || window.innerWidth < 768;
 
   // Ne pas exécuter l'animation sur mobile
-  if (isMobile) {
-    return; // Sortir de la fonction si c'est un appareil mobile
-  }
+  if (isMobile) return;
 
   // Sélectionnez toutes vos formes par l'attribut data-moving-shape
   const shapes = document.querySelectorAll("[data-moving-shape]");
@@ -160,58 +157,61 @@ function initAnimBubbles() {
 
   // Pour chaque forme
   shapes.forEach((shape) => {
+    // Dimensions du conteneur et de la forme
+    const maxX = container.offsetWidth - shape.offsetWidth;
+    const maxY = container.offsetHeight - shape.offsetHeight;
+
     // Position initiale aléatoire
-    const x = Math.random() * (container.offsetWidth - shape.offsetWidth);
-    const y = Math.random() * (container.offsetHeight - shape.offsetHeight);
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
 
-    // Vitesse normale horizontalement, mais réduite verticalement
-    const horizontalSpeed = 5; // Mouvement normal sur l'axe X
-    const verticalSpeed = 1.5; // Mouvement réduit sur l'axe Y
-
+    // Vitesse
+    const horizontalSpeed = 5;   // Mouvement normal sur l'axe X
+    const verticalSpeed = 1.5;   // Mouvement réduit sur l'axe Y
     let speedX = (Math.random() - 0.5) * horizontalSpeed;
     let speedY = (Math.random() - 0.5) * verticalSpeed;
 
-    // Vous pouvez aussi personnaliser la vitesse selon l'ID de la forme
-    const shapeId = shape.getAttribute("data-shape-id");
-    if (shapeId === "1") {
-      // Personnalisation pour la première forme si nécessaire
-    }
+    // Sauvegarde les positions dans dataset
+    shape.dataset.x = x;
+    shape.dataset.y = y;
 
-    // Positionnez initialement la forme
-    shape.style.left = x + "px";
-    shape.style.top = y + "px";
+    // Position initiale via transform
+    shape.style.transform = `translate(${x}px, ${y}px)`;
 
     // Fonction d'animation
     function animate() {
-      // Position actuelle
-      let currentX = parseFloat(shape.style.left);
-      let currentY = parseFloat(shape.style.top);
+      // Lire les positions actuelles
+      let currentX = parseFloat(shape.dataset.x);
+      let currentY = parseFloat(shape.dataset.y);
 
-      // Nouvelle position
+      // Calculer nouvelles positions
       let newX = currentX + speedX;
       let newY = currentY + speedY;
 
       // Vérification des limites et rebonds
-      if (newX <= 0 || newX >= container.offsetWidth - shape.offsetWidth) {
+      if (newX <= 0 || newX >= maxX) {
         speedX = -speedX;
+        newX = Math.max(0, Math.min(newX, maxX));
       }
-
-      if (newY <= 0 || newY >= container.offsetHeight - shape.offsetHeight) {
+      if (newY <= 0 || newY >= maxY) {
         speedY = -speedY;
+        newY = Math.max(0, Math.min(newY, maxY));
       }
 
-      // Appliquer la nouvelle position
-      shape.style.left = newX + "px";
-      shape.style.top = newY + "px";
+      // Sauvegarde les nouvelles positions
+      shape.dataset.x = newX;
+      shape.dataset.y = newY;
 
-      // Continuer l'animation
+      // Appliquer via transform (CLS-safe)
+      shape.style.transform = `translate(${newX}px, ${newY}px)`;
+
       requestAnimationFrame(animate);
     }
 
-    // Démarrer l'animation
+    // Lancer l’animation
     animate();
   });
-};
+}
 
 /* cards home */
 /*                         */
